@@ -1,10 +1,7 @@
 package io.subutai.client.console.impl.metric;
 
 
-import io.subutai.client.console.api.metric.Cpu;
-
-
-public class CpuImpl implements Cpu
+public class Cpu implements io.subutai.client.console.api.metric.Cpu
 {
     private String model = "UNKNOWN";
     private Double idle = 0D;

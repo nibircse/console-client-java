@@ -2,11 +2,9 @@ package io.subutai.client.console.impl.hosts;
 
 
 import io.subutai.client.console.api.HostArchitecture;
-import io.subutai.client.console.api.hosts.ContainerHost;
-import io.subutai.client.console.api.hosts.Quota;
 
 
-public class ContainerHostImpl implements ContainerHost
+public class ContainerHost implements io.subutai.client.console.api.hosts.ContainerHost
 {
     private Status status;
     private String name;
@@ -14,7 +12,7 @@ public class ContainerHostImpl implements ContainerHost
     private String id;
     private HostArchitecture arch;
     private String ip;
-    private QuotaImpl quota;
+    private Quota quota;
 
 
     @Override
@@ -60,7 +58,7 @@ public class ContainerHostImpl implements ContainerHost
 
 
     @Override
-    public Quota getQuota()
+    public io.subutai.client.console.api.hosts.Quota getQuota()
     {
         return quota;
     }

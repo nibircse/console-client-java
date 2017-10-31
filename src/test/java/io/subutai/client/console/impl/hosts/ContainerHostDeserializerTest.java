@@ -19,7 +19,7 @@ public class ContainerHostDeserializerTest
     public void setUp() throws Exception
     {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter( ContainerHostImpl.class, new ContainerHostDeserializer() ).setPrettyPrinting();
+        gsonBuilder.registerTypeAdapter( ContainerHost.class, new ContainerHostDeserializer() ).setPrettyPrinting();
         gson = gsonBuilder.create();
     }
 
@@ -35,7 +35,7 @@ public class ContainerHostDeserializerTest
                 + "          }\n" + "        ],\n" + "        \"id\": \"CE02845F9E395621E08490F0BB57247F10F55E30\",\n"
                 + "        \"hostname\": \"Container1\",\n" + "        \"arch\": \"AMD64\"\n" + "      }";
 
-        ContainerHostImpl containerHost = gson.fromJson( json, ContainerHostImpl.class );
+        ContainerHost containerHost = gson.fromJson( json, ContainerHost.class );
 
         assertNotNull( containerHost.getStatus() );
 
@@ -68,7 +68,7 @@ public class ContainerHostDeserializerTest
                 + "    \"id\": \"753A84EDAE09AC2C6D904BE239890EC75B2E84EB\",\n" + "    \"hostname\": \"ubuntu\",\n"
                 + "    \"arch\": \"AMD64\"\n" + "  }";
 
-        ResourceHostImpl resourceHost = gson.fromJson( json, ResourceHostImpl.class );
+        ResourceHost resourceHost = gson.fromJson( json, ResourceHost.class );
 
         assertNotNull( resourceHost.getInstanceType() );
 

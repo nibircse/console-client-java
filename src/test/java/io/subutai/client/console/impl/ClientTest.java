@@ -15,8 +15,7 @@ import org.apache.http.client.methods.HttpRequestBase;
 import com.google.common.collect.Lists;
 import com.google.gson.reflect.TypeToken;
 
-import io.subutai.client.console.impl.hosts.ContainerHostDeserializer;
-import io.subutai.client.console.impl.hosts.ResourceHostImpl;
+import io.subutai.client.console.impl.hosts.ResourceHost;
 import io.subutai.client.console.impl.metric.ResourceHostMetricDeserializer;
 
 import static org.mockito.Matchers.any;
@@ -28,7 +27,7 @@ import static org.mockito.Mockito.verify;
 
 
 @RunWith( MockitoJUnitRunner.class )
-public class ClientImplTest
+public class ClientTest
 {
 
     private static final String URL = "https://e3cba43ce80f85d3f57d28e63575e4f199e38e89.peers.subut.ai:8443";
@@ -39,11 +38,11 @@ public class ClientImplTest
     @Mock
     private CloseableHttpResponse response;
     @Mock
-    private PeerInfoImpl peerInfo;
+    private PeerInfo peerInfo;
     @Mock
     private ResourceHostMetricDeserializer.ResourceHostMetricWrapper resourceHostMetric;
     @Mock
-    private ResourceHostImpl resourceHost;
+    private ResourceHost resourceHost;
 
 
     private void returnHttpCode( int httpCode )

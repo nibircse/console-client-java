@@ -15,11 +15,11 @@ import io.subutai.client.console.api.InstanceType;
 import io.subutai.client.console.util.gson.JsonUtil;
 
 
-public class ResourceHostMetricDeserializer implements JsonDeserializer<ResourceHostMetricImpl>
+public class ResourceHostMetricDeserializer implements JsonDeserializer<ResourceHostMetric>
 {
     @Override
-    public ResourceHostMetricImpl deserialize( final JsonElement jsonElement, final Type typeOfT,
-                                               final JsonDeserializationContext context ) throws JsonParseException
+    public ResourceHostMetric deserialize( final JsonElement jsonElement, final Type typeOfT,
+                                           final JsonDeserializationContext context ) throws JsonParseException
     {
 
         JsonObject metric = jsonElement.getAsJsonObject();
@@ -33,21 +33,21 @@ public class ResourceHostMetricDeserializer implements JsonDeserializer<Resource
         String peerId = metric.get( "peerId" ).getAsString();
         InstanceType instanceType = InstanceType.valueOf( metric.get( "instanceType" ).getAsString().toUpperCase() );
 
-        RamImpl ram = JsonUtil.fromJson( metric.get( "RAM" ).getAsJsonObject(), RamImpl.class );
-        CpuImpl cpu = JsonUtil.fromJson( metric.get( "CPU" ).getAsJsonObject(), CpuImpl.class );
-        DiskImpl disk = JsonUtil.fromJson( metric.get( "Disk" ).getAsJsonObject(), DiskImpl.class );
+        Ram ram = JsonUtil.fromJson( metric.get( "RAM" ).getAsJsonObject(), Ram.class );
+        Cpu cpu = JsonUtil.fromJson( metric.get( "CPU" ).getAsJsonObject(), Cpu.class );
+        Disk disk = JsonUtil.fromJson( metric.get( "Disk" ).getAsJsonObject(), Disk.class );
 
-        return new ResourceHostMetricImpl( id, hostname, peerId, isManagement, isConnected, arch, instanceType, ram,
+        return new ResourceHostMetric( id, hostname, peerId, isManagement, isConnected, arch, instanceType, ram,
                 cpu, disk );
     }
 
 
     public static class ResourceHostMetricWrapper
     {
-        private List<ResourceHostMetricImpl> resources;
+        private List<ResourceHostMetric> resources;
 
 
-        public List<ResourceHostMetricImpl> getResources()
+        public List<ResourceHostMetric> getResources()
         {
             return resources;
         }

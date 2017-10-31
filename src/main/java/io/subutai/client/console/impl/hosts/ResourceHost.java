@@ -8,12 +8,10 @@ import com.google.gson.annotations.SerializedName;
 
 import io.subutai.client.console.api.HostArchitecture;
 import io.subutai.client.console.api.InstanceType;
-import io.subutai.client.console.api.hosts.ContainerHost;
-import io.subutai.client.console.api.hosts.ResourceHost;
 import io.subutai.client.console.util.gson.JsonUtil;
 
 
-public class ResourceHostImpl implements ResourceHost
+public class ResourceHost implements io.subutai.client.console.api.hosts.ResourceHost
 {
     @SerializedName( value = "instanceType", alternate = "instance" )
     private InstanceType instanceType;
@@ -22,7 +20,7 @@ public class ResourceHostImpl implements ResourceHost
     private String id;
     private String hostname;
     private HostArchitecture arch;
-    private List<ContainerHostImpl> containers;
+    private List<ContainerHost> containers;
 
 
     @Override
@@ -61,7 +59,7 @@ public class ResourceHostImpl implements ResourceHost
 
 
     @Override
-    public List<ContainerHost> getContainers()
+    public List<io.subutai.client.console.api.hosts.ContainerHost> getContainers()
     {
         return Lists.newArrayList( containers );
     }

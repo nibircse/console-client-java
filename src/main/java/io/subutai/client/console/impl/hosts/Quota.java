@@ -1,10 +1,7 @@
 package io.subutai.client.console.impl.hosts;
 
 
-import io.subutai.client.console.api.hosts.Quota;
-
-
-public class QuotaImpl implements Quota
+public class Quota implements io.subutai.client.console.api.hosts.Quota
 {
     private Double ram;
     private Double cpu;

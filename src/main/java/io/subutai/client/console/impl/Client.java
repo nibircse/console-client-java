@@ -37,14 +37,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import io.subutai.client.console.api.OperationFailedException;
-import io.subutai.client.console.api.PeerInfo;
-import io.subutai.client.console.api.hosts.ResourceHost;
-import io.subutai.client.console.api.metric.ResourceHostMetric;
 import io.subutai.client.console.impl.hosts.ContainerHostDeserializer;
-import io.subutai.client.console.impl.hosts.ResourceHostImpl;
-import io.subutai.client.console.impl.metric.ResourceHostMetricImpl;
-import io.subutai.client.console.util.StringUtil;
+import io.subutai.client.console.impl.hosts.ContainerHost;
+import io.subutai.client.console.impl.hosts.ResourceHost;
 import io.subutai.client.console.impl.metric.ResourceHostMetricDeserializer;
+import io.subutai.client.console.impl.metric.ResourceHostMetric;
+import io.subutai.client.console.util.StringUtil;
 
 
 public class Client implements io.subutai.client.console.api.Client
@@ -96,7 +94,8 @@ public class Client implements io.subutai.client.console.api.Client
 
         //init GSON instance
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter( ResourceHostMetricImpl.class, new ResourceHostMetricDeserializer() );
+        gsonBuilder.registerTypeAdapter( ResourceHostMetric.class, new ResourceHostMetricDeserializer() );
+        gsonBuilder.registerTypeAdapter( ContainerHost.class, new ContainerHostDeserializer() );
         gson = gsonBuilder.create();
     }
 
@@ -129,11 +128,11 @@ public class Client implements io.subutai.client.console.api.Client
 
 
     @Override
-    public PeerInfo getPeerInfo()
+    public io.subutai.client.console.api.PeerInfo getPeerInfo()
     {
         HttpGet request = new HttpGet( String.format( "%s/rest/v1/peer/info", consoleUrl ) );
 
-        PeerInfoImpl peerInfo;
+        PeerInfo peerInfo;
         CloseableHttpResponse response = null;
         try
         {
@@ -141,7 +140,7 @@ public class Client implements io.subutai.client.console.api.Client
 
             checkHttpStatus( response, HttpStatus.SC_OK, "get peer info" );
 
-            peerInfo = parse( response, new TypeToken<PeerInfoImpl>()
+            peerInfo = parse( response, new TypeToken<PeerInfo>()
             {
             } );
         }
@@ -155,9 +154,9 @@ public class Client implements io.subutai.client.console.api.Client
 
 
     @Override
-    public List<ResourceHostMetric> getResourceHostMetrics()
+    public List<io.subutai.client.console.api.metric.ResourceHostMetric> getResourceHostMetrics()
     {
-        List<ResourceHostMetric> resourceHostMetrics = Lists.newArrayList();
+        List<io.subutai.client.console.api.metric.ResourceHostMetric> resourceHostMetrics = Lists.newArrayList();
 
         HttpGet request = new HttpGet( String.format( "%s/rest/v1/peer/resources", consoleUrl ) );
 
@@ -185,9 +184,9 @@ public class Client implements io.subutai.client.console.api.Client
 
 
     @Override
-    public List<ResourceHost> getResourceHosts()
+    public List<io.subutai.client.console.api.hosts.ResourceHost> getResourceHosts()
     {
-        List<ResourceHost> resourceHosts = Lists.newArrayList();
+        List<io.subutai.client.console.api.hosts.ResourceHost> resourceHosts = Lists.newArrayList();
 
         HttpGet request = new HttpGet( String.format( "%s/rest/v1/hosts", consoleUrl ) );
 
@@ -198,7 +197,7 @@ public class Client implements io.subutai.client.console.api.Client
 
             checkHttpStatus( response, HttpStatus.SC_OK, "get resource hosts" );
 
-            List<ResourceHostImpl> resourceHostList = parse( response, new TypeToken<List<ResourceHostImpl>>()
+            List<ResourceHost> resourceHostList = parse( response, new TypeToken<List<ResourceHost>>()
             {
             } );
 

@@ -1,11 +1,10 @@
 package io.subutai.client.console.impl;
 
 
-import io.subutai.client.console.api.PeerInfo;
 import io.subutai.client.console.util.gson.JsonUtil;
 
 
-public class PeerInfoImpl implements PeerInfo
+public class PeerInfo implements io.subutai.client.console.api.PeerInfo
 {
     private String id;
     private String ownerId;

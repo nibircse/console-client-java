@@ -3,14 +3,10 @@ package io.subutai.client.console.impl.metric;
 
 import io.subutai.client.console.api.HostArchitecture;
 import io.subutai.client.console.api.InstanceType;
-import io.subutai.client.console.api.metric.Cpu;
-import io.subutai.client.console.api.metric.Disk;
-import io.subutai.client.console.api.metric.Ram;
-import io.subutai.client.console.api.metric.ResourceHostMetric;
 import io.subutai.client.console.util.gson.JsonUtil;
 
 
-public class ResourceHostMetricImpl implements ResourceHostMetric
+public class ResourceHostMetric implements io.subutai.client.console.api.metric.ResourceHostMetric
 {
     private String id;
     private String hostname;
@@ -19,9 +15,9 @@ public class ResourceHostMetricImpl implements ResourceHostMetric
     private Boolean isConnected;
     private HostArchitecture arch;
     private InstanceType instanceType;
-    private RamImpl ram;
-    private CpuImpl cpu;
-    private DiskImpl disk;
+    private Ram ram;
+    private Cpu cpu;
+    private Disk disk;
 
 
     public String getId()
@@ -60,19 +56,19 @@ public class ResourceHostMetricImpl implements ResourceHostMetric
     }
 
 
-    public Ram getRam()
+    public io.subutai.client.console.api.metric.Ram getRam()
     {
         return ram;
     }
 
 
-    public Cpu getCpu()
+    public io.subutai.client.console.api.metric.Cpu getCpu()
     {
         return cpu;
     }
 
 
-    public Disk getDisk()
+    public io.subutai.client.console.api.metric.Disk getDisk()
     {
         return disk;
     }
@@ -84,10 +80,9 @@ public class ResourceHostMetricImpl implements ResourceHostMetric
     }
 
 
-    public ResourceHostMetricImpl( final String id, final String hostname, final String peerId,
-                                   final Boolean isManagement, final Boolean isConnected, final HostArchitecture arch,
-                                   final InstanceType instanceType, final RamImpl ram, final CpuImpl cpu,
-                                   final DiskImpl disk )
+    public ResourceHostMetric( final String id, final String hostname, final String peerId, final Boolean isManagement,
+                               final Boolean isConnected, final HostArchitecture arch, final InstanceType instanceType,
+                               final Ram ram, final Cpu cpu, final Disk disk )
     {
         this.id = id;
         this.hostname = hostname;

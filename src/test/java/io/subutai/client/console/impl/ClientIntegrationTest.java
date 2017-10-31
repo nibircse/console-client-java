@@ -19,7 +19,7 @@ import static org.junit.Assert.assertNotNull;
  * console
  */
 @Ignore( "integration-test" )
-public class ClientImplIntegrationTest
+public class ClientIntegrationTest
 {
     private static final String URL = "https://192.168.88.12:8443";
     private static final String USERNAME = "admin";

@@ -1,10 +1,7 @@
 package io.subutai.client.console.impl.metric;
 
 
-import io.subutai.client.console.api.metric.Ram;
-
-
-public class RamImpl implements Ram
+public class Ram implements io.subutai.client.console.api.metric.Ram
 {
     private Double total;
 

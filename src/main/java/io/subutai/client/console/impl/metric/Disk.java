@@ -1,10 +1,7 @@
 package io.subutai.client.console.impl.metric;
 
 
-import io.subutai.client.console.api.metric.Disk;
-
-
-public class DiskImpl implements Disk
+public class Disk implements io.subutai.client.console.api.metric.Disk
 {
     private Double total = 0D;
     private Double used = 0D;
